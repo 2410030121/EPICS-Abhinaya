@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prashikshan - Academia Industry Interface</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #f5f8ff;
+            color: #333;
+        }
+
+        header {
+            background: #004aad;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        button {
+            background: #004aad;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #00307c;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        nav {
+            background: #004aad;
+            padding: 10px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .card {
+            background: #f0f5ff;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            color: #004aad;
+        }
+
+        .role-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+
+        .role-buttons button {
+            width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>PRASHIKSHAN - Academia Industry Interface</h1>
+    </header>
+
+    <div class="container" id="login-page">
+        <h2>Login to Continue</h2><br>
+        <input type="email" id="email" placeholder="Email ID">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <p style="margin-top:10px;">Don't have an account? <a href="#" onclick="showSignup()">Create one</a></p>
+        <hr style="margin:20px 0;">
+        <button onclick="login()">Continue with Google</button>
+    </div>
+
+    <div class="container hidden" id="signup-page">
+        <h2>Create Account</h2><br>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email ID">
+        <input type="password" placeholder="Password">
+        <button onclick="login()">Sign Up</button>
+        <p style="margin-top:10px;">Already have an account? <a href="#" onclick="showLogin()">Login</a></p>
+    </div>
+
+    <div class="hidden" id="dashboard">
+        <nav>
+            <a href="#" onclick="showPage('student')">Student</a>
+            <a href="#" onclick="showPage('college')">College</a>
+            <a href="#" onclick="showPage('industry')">Industry</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+        <div class="container">
+            <h2>Welcome to Prashikshan Dashboard</h2>
+            <p>Select a role below to explore the system modules.</p>
+            <div class="role-buttons">
+                <button onclick="showPage('student')">Student</button>
+                <button onclick="showPage('college')">College</button>
+                <button onclick="showPage('industry')">Industry</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Page -->
+
+    <div class="container hidden" id="student-page">
+        <nav>
+            <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+            <a href="#" onclick="showPage('college')">College</a>
+            <a href="#" onclick="showPage('industry')">Industry</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+        <h2>Student Internship Portal</h2>
+        <div class="card">
+            <h3>Available Internships</h3>
+            <ul>
+                <li>Web Development Internship - 2 Months</li>
+                <li>Data Analytics Program - 4 Weeks</li>
+                <li>IoT Project Internship - 6 Weeks</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>My Applications</h3>
+            <p>Status: Web Development Internship - Under Review</p>
+        </div>
+    </div>
+
+    <!-- College Page -->
+
+    <div class="container hidden" id="college-page">
+        <nav>
+            <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+            <a href="#" onclick="showPage('student')">Student</a>
+            <a href="#" onclick="showPage('industry')">Industry</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+        <h2>College Faculty Panel</h2>
+        <div class="card">
+            <h3>Mentor Assignments</h3>
+            <ul>
+                <li>Student: Priya Sharma → Mentor: Dr. R. Nair</li>
+                <li>Student: Karan Patel → Mentor: Prof. Meera Das</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Reports & Evaluation</h3>
+            <p>Generate NEP-compliant evaluation reports for each internship.</p>
+        </div>
+    </div>
+
+    <!-- Industry Page -->
+
+    <div class="container hidden" id="industry-page">
+        <nav>
+            <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+            <a href="#" onclick="showPage('student')">Student</a>
+            <a href="#" onclick="showPage('college')">College</a>
+            <a href="#" onclick="logout()">Logout</a>
+        </nav>
+        <h2>Industry Partner Dashboard</h2>
+        <div class="card">
+            <h3>Active Internship Openings</h3>
+            <ul>
+                <li>AI Research Assistant - 3 Months</li>
+                <li>Cybersecurity Training Intern - 8 Weeks</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h3>Intern Applications</h3>
+            <p>Review and shortlist candidates directly from this dashboard.</p>
+        </div>
+    </div>
+
+    <script>
+        function login() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('signup-page').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+        }
+        function logout() {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('student-page').classList.add('hidden');
+            document.getElementById('college-page').classList.add('hidden');
+            document.getElementById('industry-page').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+        }
+        function showSignup() {
+            document.getElementById('login-page').classList.add('hidden');
+            document.getElementById('signup-page').classList.remove('hidden');
+        }
+        function showLogin() {
+            document.getElementById('signup-page').classList.add('hidden');
+            document.getElementById('login-page').classList.remove('hidden');
+        }
+        function showPage(page) {
+            document.getElementById('dashboard').classList.add('hidden');
+            document.getElementById('student-page').classList.add('hidden');
+            document.getElementById('college-page').classList.add('hidden');
+            document.getElementById('industry-page').classList.add('hidden');
+            document.getElementById(page + '-page').classList.remove('hidden');
+        }
+    </script>
+
+</body>
+
+</html>
